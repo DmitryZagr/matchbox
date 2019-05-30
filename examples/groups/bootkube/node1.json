@@ -12,7 +12,7 @@
     "k8s_dns_service_ip": "10.3.0.10",
     "pxe": "true",
     "ssh_authorized_keys": [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPQFdwVLr+alsWIgYRz9OdqDhnx9jjuFbkdSdpqq4gd9uZApYlivMDD4UgjFazQpezx8DiNhu9ym7i6LgAcdwi+10hE4L9yoJv9uBgbBxOAd65znqLqF91NtV4mlKP5YfJtR7Ehs+pTB+IIC+o5veDbPn+BYgDMJ2x7Osbn1/gFSDken/yoOFbYbRMGMfVEQYjJzC4r/qCKH0bl/xuVNLxf9FkWSTCcQFKGOndwuGITDkshD4r2Kk8gUddXPxoahBv33/2QH0CY5zbKYjhgN6I6WtwO+O1uJwtNeV1AGhYjurdd60qggNwx+W7623uK3nIXvJd3hzDO8u5oa53/tIL fake-test-key-REMOVE-ME"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCs+PR+2AqD7O7GXWUESwJ5WKd06J08V4Tcd10PCeBh63P1Ic0OyeGJJz7mEnGRQy6YBZqHXuVVrmqNCc1oT2/r+ZE3051SbenRUMZLsn7FWLmMTHjIZQg5Xz1OiDE11IcRVyno9mzBZXcbBaiXpJ+ZkFX9bxWmGczGQc7WyNe2PeMR1LqtJgw/WZ3l5ws3Z/nrZEi1snw0yp0n+Q8kPdeA9wlf/XmOl4crPCx/bxjmZsQxmcsD6zHyRSzbj+4ThyP3N9esD5UJm9LfiX6xjd79AjIQxZf42G+hOI2pM8gETlwNXL2DMUppMWkM2HejWoXZirLM3TjZ2rgC6EcbXI/P"
     ]
   }
 }
