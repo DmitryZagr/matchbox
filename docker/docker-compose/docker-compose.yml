@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  matchbox:
+    image: quay.io/poseidon/matchbox:v0.8.0
+    restart: always
+    volumes:
+      - ../../examples:/var/lib/matchbox
+      - ../../examples/groups/simple-install:/var/lib/matchbox/groups
+    environment:
+      MATCHBOX_ADDRESS: 0.0.0.0:8080
+      MATCHBOX_LOG_LEVEL: debug
+    ports:
+      - "8080:8080"
+  dnsmasq:
+    image: quay.io/coreos/dnsmasq
+    restart: always
+    volumes:
+      - ../../contrib/dnsmasq/metal1.conf:/etc/dnsmasq.conf:ro
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
