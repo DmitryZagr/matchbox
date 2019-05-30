@@ -15,12 +15,12 @@ Client hardware must have a network interface which supports PXE or iPXE.
 * Add a DNS name which resolves to a `matchbox` deploy.
 * Chainload BIOS clients (legacy PXE) to iPXE (undionly.kpxe)
 * Chainload UEFI clients to iPXE (ipxe.efi)
-* Point iPXE clients to `http://matchbox.example.com:port/boot.ipxe`
-* Point GRUB clients to `http://matchbox.example.com:port/grub`
+* Point iPXE clients to `http://192.168.2.2:port/boot.ipxe`
+* Point GRUB clients to `http://192.168.2.2:port/grub`
 
 ## Setup
 
-Many companies already have DHCP/TFTP configured to "PXE-boot" PXE/iPXE clients. In this case, machines (or a subset of machines) can be made to chainload from `chain http://matchbox.example.com:port/boot.ipxe`. Older PXE clients can be made to chainload into iPXE to be able to fetch subsequent configs via HTTP.
+Many companies already have DHCP/TFTP configured to "PXE-boot" PXE/iPXE clients. In this case, machines (or a subset of machines) can be made to chainload from `chain http://192.168.2.2:port/boot.ipxe`. Older PXE clients can be made to chainload into iPXE to be able to fetch subsequent configs via HTTP.
 
 On simpler networks, such as what a developer might have at home, a relatively inflexible DHCP server may be in place, with no TFTP server. In this case, a proxy DHCP server can be run alongside a non-PXE capable DHCP server.
 
@@ -32,17 +32,17 @@ The setup of DHCP, TFTP, and DNS services on a network varies greatly. If you wi
 
 ## DNS
 
-Add a DNS entry (e.g. `matchbox.example.com`, `provisoner.mycompany-internal`) that resolves to a deployment of the CoreOS `matchbox` service from machines you intend to boot and provision.
+Add a DNS entry (e.g. `192.168.2.2`, `provisoner.mycompany-internal`) that resolves to a deployment of the CoreOS `matchbox` service from machines you intend to boot and provision.
 
 ```sh
-$ dig matchbox.example.com
+$ dig 192.168.2.2
 ```
 
 If you deployed `matchbox` to a known IP address (e.g. dedicated host, load balanced endpoint, Kubernetes NodePort) and use `dnsmasq`, a domain name to IPv4/IPv6 address mapping could be added to the `/etc/dnsmasq.conf`.
 
 ```
 # dnsmasq.conf
-address=/matchbox.example.com/172.18.0.2
+address=/192.168.2.2/172.18.0.2
 ```
 
 ## iPXE
@@ -51,7 +51,7 @@ Networks which already run DHCP and TFTP services to network boot PXE/iPXE clien
 
 ```
 # /var/www/html/ipxe/default.ipxe
-chain http://matchbox.example.com:8080/boot.ipxe
+chain http://192.168.2.2:8080/boot.ipxe
 ```
 
 You can chainload from a menu entry or use other [iPXE commands](http://ipxe.org/cmd) if you need to do more than simple delegation.
@@ -82,14 +82,14 @@ dhcp-boot=tag:efi64,ipxe.efi
 
 # iPXE - chainload to matchbox ipxe boot script
 dhcp-userclass=set:ipxe,iPXE
-dhcp-boot=tag:ipxe,http://matchbox.example.com:8080/boot.ipxe
+dhcp-boot=tag:ipxe,http://192.168.2.2:8080/boot.ipxe
 
 # verbose
 log-queries
 log-dhcp
 
 # static DNS assignements
-address=/matchbox.example.com/192.168.1.100
+address=/192.168.2.2/192.168.1.100
 
 # (optional) disable DNS and specify alternate
 # port=0
@@ -123,7 +123,7 @@ pxe-service=tag:#ipxe,x86PC,"PXE chainload to iPXE",undionly.kpxe
 # if request comes from iPXE user class, set tag "ipxe"
 dhcp-userclass=set:ipxe,iPXE
 # point ipxe tagged requests to the matchbox iPXE boot script (via HTTP)
-pxe-service=tag:ipxe,x86PC,"iPXE",http://matchbox.example.com:8080/boot.ipxe
+pxe-service=tag:ipxe,x86PC,"iPXE",http://192.168.2.2:8080/boot.ipxe
 
 # verbose
 log-queries
@@ -151,7 +151,7 @@ timeout 10
 default iPXE
 LABEL iPXE
 KERNEL ipxe.lkrn
-APPEND dhcp && chain http://matchbox.example.com:8080/boot.ipxe
+APPEND dhcp && chain http://192.168.2.2:8080/boot.ipxe
 ```
 
 Add ipxe.lkrn to `/var/lib/tftpboot` (see [iPXE docs](http://ipxe.org/embed)).
@@ -178,8 +178,8 @@ sudo rkt run --net=host quay.io/coreos/dnsmasq \
   --dhcp-match=set:efi64,option:client-arch,9 \
   --dhcp-boot=tag:efi64,ipxe.efi \
   --dhcp-userclass=set:ipxe,iPXE \
-  --dhcp-boot=tag:ipxe,http://matchbox.example.com:8080/boot.ipxe \ 
-  --address=/matchbox.example.com/192.168.1.2 \
+  --dhcp-boot=tag:ipxe,http://192.168.2.2:8080/boot.ipxe \ 
+  --address=/192.168.2.2/192.168.1.2 \
   --log-queries \
   --log-dhcp
 ```
@@ -197,8 +197,8 @@ sudo docker run --rm --cap-add=NET_ADMIN --net=host quay.io/coreos/dnsmasq \
   --dhcp-match=set:efi64,option:client-arch,9 \
   --dhcp-boot=tag:efi64,ipxe.efi \
   --dhcp-userclass=set:ipxe,iPXE \
-  --dhcp-boot=tag:ipxe,http://matchbox.example.com:8080/boot.ipxe \
-  --address=/matchbox.example.com/192.168.1.2 \
+  --dhcp-boot=tag:ipxe,http://192.168.2.2:8080/boot.ipxe \
+  --address=/192.168.2.2/192.168.1.2 \
   --log-queries \
   --log-dhcp
 ```
@@ -213,7 +213,7 @@ sudo rkt run --net=host quay.io/coreos/dnsmasq \
   --enable-tftp --tftp-root=/var/lib/tftpboot \
   --dhcp-userclass=set:ipxe,iPXE \
   --pxe-service=tag:#ipxe,x86PC,"PXE chainload to iPXE",undionly.kpxe \
-  --pxe-service=tag:ipxe,x86PC,"iPXE",http://matchbox.example.com:8080/boot.ipxe \
+  --pxe-service=tag:ipxe,x86PC,"iPXE",http://192.168.2.2:8080/boot.ipxe \
   --log-queries \
   --log-dhcp
 ```
@@ -224,7 +224,7 @@ sudo docker run --rm --cap-add=NET_ADMIN --net=host quay.io/coreos/dnsmasq \
   --enable-tftp --tftp-root=/var/lib/tftpboot \
   --dhcp-userclass=set:ipxe,iPXE \
   --pxe-service=tag:#ipxe,x86PC,"PXE chainload to iPXE",undionly.kpxe \
-  --pxe-service=tag:ipxe,x86PC,"iPXE",http://matchbox.example.com:8080/boot.ipxe \
+  --pxe-service=tag:ipxe,x86PC,"iPXE",http://192.168.2.2:8080/boot.ipxe \
   --log-queries \
   --log-dhcp
 ```

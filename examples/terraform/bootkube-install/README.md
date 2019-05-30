@@ -57,7 +57,7 @@ Configure the Matchbox provider to use your Matchbox API endpoint and client cer
 ```
 provider "matchbox" {
   version = "0.2.3"
-  endpoint    = "matchbox.example.com:8081"
+  endpoint    = "192.168.2.2:8081"
   client_cert = "${file("~/.matchbox/client.crt")}"
   client_key  = "${file("~/.matchbox/client.key")}"
   ca          = "${file("~/.matchbox/ca.crt")}"

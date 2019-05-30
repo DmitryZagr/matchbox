@@ -24,8 +24,8 @@ sudo rkt run --net=host quay.io/coreos/dnsmasq \
   --dhcp-match=set:efi64,option:client-arch,9 \
   --dhcp-boot=tag:efi64,ipxe.efi \
   --dhcp-userclass=set:ipxe,iPXE \
-  --dhcp-boot=tag:ipxe,http://matchbox.example.com:8080/boot.ipxe \
-  --address=/matchbox.example.com/192.168.1.2 \
+  --dhcp-boot=tag:ipxe,http://192.168.2.2:8080/boot.ipxe \
+  --address=/192.168.2.2/192.168.1.2 \
   --log-queries \
   --log-dhcp
 ```
@@ -44,7 +44,7 @@ sudo docker run --rm --cap-add=NET_ADMIN --net=host quay.io/coreos/dnsmasq \
   --dhcp-match=set:efi64,option:client-arch,9 \
   --dhcp-boot=tag:efi64,ipxe.efi \
   --dhcp-userclass=set:ipxe,iPXE \
-  --dhcp-boot=tag:ipxe,http://matchbox.example.com:8080/boot.ipxe \
+  --dhcp-boot=tag:ipxe,http://192.168.2.2:8080/boot.ipxe \
   --address=/matchbox.example/192.168.1.2 \
   --log-queries \
   --log-dhcp

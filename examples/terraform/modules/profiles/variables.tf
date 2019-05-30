@@ -1,6 +1,6 @@
 variable "matchbox_http_endpoint" {
   type        = "string"
-  description = "Matchbox HTTP read-only endpoint (e.g. http://matchbox.example.com:8080)"
+  description = "Matchbox HTTP read-only endpoint (e.g. http://192.168.2.2:8080)"
 }
 
 variable "container_linux_version" {

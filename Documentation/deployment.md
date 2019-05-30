@@ -145,7 +145,7 @@ Export `SAN` to set the Subject Alt Names which should be used in certificates. 
 
 ```sh
 # DNS or IP Subject Alt Names where matchbox runs
-$ export SAN=DNS.1:matchbox.example.com,IP.1:172.18.0.2
+$ export SAN=DNS.1:192.168.2.2,IP.1:172.18.0.2
 ```
 
 Generate a `ca.crt`, `server.crt`, `server.key`, `client.crt`, and `client.key`.
@@ -185,20 +185,20 @@ Verify the matchbox service is running and can be reached by client machines (th
 
 ```sh
 $ systemctl status matchbox
-$ dig matchbox.example.com
+$ dig 192.168.2.2
 ```
 
 Verify you receive a response from the HTTP and API endpoints.
 
 ```sh
-$ curl http://matchbox.example.com:8080
+$ curl http://192.168.2.2:8080
 matchbox
 ```
 
 If you enabled the gRPC API,
 
 ```sh
-$ openssl s_client -connect matchbox.example.com:8081 -CAfile /etc/matchbox/ca.crt -cert scripts/tls/client.crt -key scripts/tls/client.key
+$ openssl s_client -connect 192.168.2.2:8081 -CAfile /etc/matchbox/ca.crt -cert scripts/tls/client.crt -key scripts/tls/client.key
 CONNECTED(00000003)
 depth=1 CN = fake-ca
 verify return:1
@@ -219,7 +219,7 @@ Certificate chain
 Download a recent Container Linux [release](https://coreos.com/releases/) with signatures.
 
 ```sh
-$ ./scripts/get-coreos stable 1967.3.0 .     # note the "." 3rd argument
+$ ./scripts/get-coreos stable 2079.4.0 .     # note the "." 3rd argument
 ```
 
 Move the images to `/var/lib/matchbox/assets`,
@@ -231,7 +231,7 @@ $ sudo cp -r coreos /var/lib/matchbox/assets
 ```
 /var/lib/matchbox/assets/
 ├── coreos
-│   └── 1967.3.0
+│   └── 2079.4.0
 │       ├── CoreOS_Image_Signing_Key.asc
 │       ├── coreos_production_image.bin.bz2
 │       ├── coreos_production_image.bin.bz2.sig
@@ -244,7 +244,7 @@ $ sudo cp -r coreos /var/lib/matchbox/assets
 and verify the images are acessible.
 
 ```sh
-$ curl http://matchbox.example.com:8080/assets/coreos/1967.3.0/
+$ curl http://192.168.2.2:8080/assets/coreos/2079.4.0/
 <pre>...
 ```
 
@@ -255,8 +255,8 @@ For large production environments, use a cache proxy or mirror suitable for your
 Review [network setup](https://github.com/poseidon/matchbox/blob/master/Documentation/network-setup.md) with your network administrator to set up DHCP, TFTP, and DNS services on your network. At a high level, your goals are to:
 
 * Chainload PXE firmwares to iPXE
-* Point iPXE client machines to the `matchbox` iPXE HTTP endpoint `http://matchbox.example.com:8080/boot.ipxe`
-* Ensure `matchbox.example.com` resolves to your `matchbox` deployment
+* Point iPXE client machines to the `matchbox` iPXE HTTP endpoint `http://192.168.2.2:8080/boot.ipxe`
+* Ensure `192.168.2.2` resolves to your `matchbox` deployment
 
 CoreOS provides [dnsmasq](https://github.com/poseidon/matchbox/tree/master/contrib/dnsmasq) as `quay.io/coreos/dnsmasq`, if you wish to use rkt or Docker.
 
@@ -295,16 +295,16 @@ Create an Ingress resource to expose the HTTP read-only and gRPC API endpoints. 
 $ kubectl create -f contrib/k8s/matchbox-ingress.yaml
 $ kubectl get ingress
 NAME      HOSTS                                          ADDRESS            PORTS     AGE
-matchbox       matchbox.example.com                      10.128.0.3,10...   80        29m
+matchbox       192.168.2.2                      10.128.0.3,10...   80        29m
 matchbox-rpc   matchbox-rpc.example.com                  10.128.0.3,10...   80, 443   29m
 ```
 
-Add DNS records `matchbox.example.com` and `matchbox-rpc.example.com` to route traffic to the Ingress Controller.
+Add DNS records `192.168.2.2` and `matchbox-rpc.example.com` to route traffic to the Ingress Controller.
 
-Verify `http://matchbox.example.com` responds with the text "matchbox" and verify gRPC clients can connect to `matchbox-rpc.example.com:443`.
+Verify `http://192.168.2.2` responds with the text "matchbox" and verify gRPC clients can connect to `matchbox-rpc.example.com:443`.
 
 ```sh
-$ curl http://matchbox.example.com
+$ curl http://192.168.2.2
 $ openssl s_client -connect matchbox-rpc.example.com:443 -CAfile ca.crt -cert client.crt -key client.key
 ```
 

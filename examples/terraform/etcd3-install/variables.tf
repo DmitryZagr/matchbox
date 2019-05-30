@@ -1,11 +1,11 @@
 variable "matchbox_http_endpoint" {
   type        = "string"
-  description = "Matchbox HTTP read-only endpoint (e.g. http://matchbox.example.com:8080)"
+  description = "Matchbox HTTP read-only endpoint (e.g. http://192.168.2.2:8080)"
 }
 
 variable "matchbox_rpc_endpoint" {
   type        = "string"
-  description = "Matchbox gRPC API endpoint, without the protocol (e.g. matchbox.example.com:8081)"
+  description = "Matchbox gRPC API endpoint, without the protocol (e.g. 192.168.2.2:8081)"
 }
 
 variable "ssh_authorized_key" {
