@@ -13,7 +13,7 @@ module "cluster" {
   cluster_name           = "example"
   matchbox_http_endpoint = "${var.matchbox_http_endpoint}"
   os_channel             = "coreos-stable"
-  os_version             = "2079.4.0"
+  os_version             = "2079.6.0"
 
   # default iPXE firmware (used in dnsmasq image) doesn't offer https
   download_protocol = "http"

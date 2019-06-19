@@ -219,7 +219,7 @@ Certificate chain
 Download a recent Container Linux [release](https://coreos.com/releases/) with signatures.
 
 ```sh
-$ ./scripts/get-coreos stable 2079.4.0 .     # note the "." 3rd argument
+$ ./scripts/get-coreos stable 2079.6.0 .     # note the "." 3rd argument
 ```
 
 Move the images to `/var/lib/matchbox/assets`,
@@ -231,7 +231,7 @@ $ sudo cp -r coreos /var/lib/matchbox/assets
 ```
 /var/lib/matchbox/assets/
 ├── coreos
-│   └── 2079.4.0
+│   └── 2079.6.0
 │       ├── CoreOS_Image_Signing_Key.asc
 │       ├── coreos_production_image.bin.bz2
 │       ├── coreos_production_image.bin.bz2.sig
@@ -244,7 +244,7 @@ $ sudo cp -r coreos /var/lib/matchbox/assets
 and verify the images are acessible.
 
 ```sh
-$ curl http://192.168.2.2:8080/assets/coreos/2079.4.0/
+$ curl http://192.168.2.2:8080/assets/coreos/2079.6.0/
 <pre>...
 ```
 
