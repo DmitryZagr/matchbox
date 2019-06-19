@@ -21,8 +21,7 @@ services:
     image: quay.io/coreos/dnsmasq
     restart: always
     volumes:
-      - ../../contrib/dnsmasq/metal1.conf:/etc/dnsmasq.conf:ro
-      - ../../contrib/dnsmasq/hosts.dns.cluster:/etc/hosts.dns.cluster:ro
+      - ../../contrib/dnsmasq/docker0.conf:/etc/dnsmasq.conf:ro
     cap_add:
       - NET_ADMIN
     network_mode: "host"
