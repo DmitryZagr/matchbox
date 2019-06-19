@@ -1,0 +1,18 @@
+#Kubernetes API
+
+192.168.2.4 api.test.cluster
+192.168.2.5 api.test.cluster
+192.168.2.6 api.test.cluster
+
+192.168.2.4 api-int.test.cluster
+192.168.2.5 api-int.test.cluster
+192.168.2.6 api-int.test.cluster
+
+#Routes
+#ToDo
+
+#etcd
+
+192.168.2.4 etcd-0.test.cluster
+192.168.2.5 etcd-1.test.cluster
+192.168.2.6 etcd-2.test.cluster
