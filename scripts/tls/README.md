@@ -14,7 +14,7 @@ Export `SAN` to set the Subject Alt Names which should be used in certificates. 
 
 ```sh
 # DNS or IP Subject Alt Names where matchbox runs
-$ export SAN=DNS.1:192.168.2.2,IP.1:172.18.0.2
+$ export SAN=DNS.1:matchbox.example.com,IP.1:172.18.0.2
 ```
 
 Generate a `ca.crt`, `server.crt`, `server.key`, `client.crt`, and `client.key`.

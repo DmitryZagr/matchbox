@@ -34,12 +34,12 @@ sudo rkt run --net=metal0:IP=172.18.0.3 quay.io/coreos/dnsmasq \
   --dhcp-match=set:efi-bc,option:client-arch,7 \
   --dhcp-boot=tag:efi-bc,grub.efi \
   --dhcp-userclass=set:grub,GRUB2 \
-  --dhcp-boot=tag:grub,"(http;192.168.2.2:8080)/grub","172.18.0.2" \
+  --dhcp-boot=tag:grub,"(http;matchbox.example.com:8080)/grub","172.18.0.2" \
   --log-queries \
   --log-dhcp \
   --dhcp-userclass=set:ipxe,iPXE \
   --dhcp-boot=tag:pxe,undionly.kpxe \
-  --dhcp-boot=tag:ipxe,http://192.168.2.2:8080/boot.ipxe \
+  --dhcp-boot=tag:ipxe,http://matchbox.example.com:8080/boot.ipxe \
   --address=/matchbox.foo/172.18.0.2
 ```
 

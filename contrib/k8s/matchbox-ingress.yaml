@@ -4,7 +4,7 @@ metadata:
   name: matchbox
 spec:
   rules:
-    - host: 192.168.2.2
+    - host: matchbox.example.com
       http:
         paths:
           - path: /

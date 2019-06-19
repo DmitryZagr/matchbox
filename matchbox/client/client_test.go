@@ -15,12 +15,12 @@ func TestNew_MissingEndpoints(t *testing.T) {
 	assert.Equal(t, errNoEndpoints, err)
 }
 
-// gRPC expects host:port with no scheme (e.g. 192.168.2.2:8081)
+// gRPC expects host:port with no scheme (e.g. matchbox.example.com:8081)
 func TestNew_InvalidEndpoints(t *testing.T) {
 	invalid := []string{
-		"192.168.2.2",
-		"http://192.168.2.2:8081",
-		"https://192.168.2.2:8081",
+		"matchbox.example.com",
+		"http://matchbox.example.com:8081",
+		"https://matchbox.example.com:8081",
 	}
 
 	for _, endpoint := range invalid {

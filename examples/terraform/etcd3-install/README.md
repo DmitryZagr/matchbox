@@ -30,8 +30,8 @@ $ cd matchbox/examples/terraform/etcd3-install
 Copy the `terraform.tfvars.example` file to `terraform.tfvars`. Ensure `provider.tf` references your matchbox credentials.
 
 ```hcl
-matchbox_http_endpoint = "http://192.168.2.2:8080"
-matchbox_rpc_endpoint = "192.168.2.2:8081"
+matchbox_http_endpoint = "http://matchbox.example.com:8080"
+matchbox_rpc_endpoint = "matchbox.example.com:8081"
 ssh_authorized_key = "ADD ME"
 ```
 

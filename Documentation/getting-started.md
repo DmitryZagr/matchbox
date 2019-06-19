@@ -15,14 +15,14 @@ Install `matchbox` on a dedicated server or Kubernetes cluster. Generate TLS cre
 Verify the matchbox read-only HTTP endpoints are accessible.
 
 ```sh
-$ curl http://192.168.2.2:8080
+$ curl http://matchbox.example.com:8080
 matchbox
 ```
 
 Verify your TLS client certificate and key can be used to access the gRPC API.
 
 ```sh
-$ openssl s_client -connect 192.168.2.2:8081 \
+$ openssl s_client -connect matchbox.example.com:8081 \
   -CAfile ~/.matchbox/ca.crt \
   -cert ~/.matchbox/client.crt \
   -key ~/.matchbox/client.key
@@ -68,8 +68,8 @@ $ cd simple-install
 Configure the variables in `variables.tf` by creating a `terraform.tfvars` file.
 
 ```hcl
-matchbox_http_endpoint = "http://192.168.2.2:8080"
-matchbox_rpc_endpoint = "192.168.2.2:8081"
+matchbox_http_endpoint = "http://matchbox.example.com:8080"
+matchbox_rpc_endpoint = "matchbox.example.com:8081"
 ssh_authorized_key = "YOUR_SSH_KEY"
 ```
 
@@ -145,10 +145,10 @@ Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
 
 Matchbox serves configs to machines and respects query parameters, if you're interested:
 
-* iPXE default - [/ipxe](http://192.168.2.2:8080/ipxe)
-* Ignition default - [/ignition](http://192.168.2.2:8080/ignition)
-* Ignition post-install - [/ignition?os=installed](http://192.168.2.2:8080/ignition?os=installed)
-* GRUB default - [/grub](http://192.168.2.2:8080/grub)
+* iPXE default - [/ipxe](http://matchbox.example.com:8080/ipxe)
+* Ignition default - [/ignition](http://matchbox.example.com:8080/ignition)
+* Ignition post-install - [/ignition?os=installed](http://matchbox.example.com:8080/ignition?os=installed)
+* GRUB default - [/grub](http://matchbox.example.com:8080/grub)
 
 ## Network
 
