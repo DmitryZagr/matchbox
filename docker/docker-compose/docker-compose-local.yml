@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:
       - ../../examples:/var/lib/matchbox
-      - ../../examples/groups/simple-install:/var/lib/matchbox/groups
+      - ../../examples/groups/oc-install:/var/lib/matchbox/groups
       - ../../scripts/tls/ca.crt:/etc/matchbox/ca.crt:ro
       - ../../scripts/tls/server.crt:/etc/matchbox/server.crt:ro
       - ../../scripts/tls/server.key:/etc/matchbox/server.key:ro

@@ -1,0 +1,25 @@
+{
+  "id": "oc-bootstrap",
+  "name": "Simple CoreOS Container Linux Alpha Install",
+  "boot": {
+    "kernel": "/assets/RHCOS/4.1.0/rhcos-4.1.0-x86_64-installer-kernel",
+    "initrd": ["/assets/RHCOS/4.1.0/rhcos-4.1.0-x86_64-installer-initramfs.img"],
+    "args": [
+      "ip=dhcp",
+      "rd.neednet=1",
+      "initrd=rhcos-4.1.0-x86_64-installer-initramfs.img",
+      "console=tty0",
+      "console=ttyS0",
+      "coreos.inst=yes",
+      "coreos.inst.install_dev=sda",
+      "coreos.inst.image_url=http://matchbox.example.com:8080/assets/RHCOS/4.1.0/rhcos-4.1.0-x86_64-metal-bios.raw.gz",
+      "coreos.inst.ignition_url=http://matchbox.example.com:8080/ignition",
+
+
+      "coreos.config.url=http://matchbox.example.com:8080/ignition?uuid=${uuid}&mac=${mac:hexhyp}",
+      "coreos.first_boot=yes",
+      "coreos.autologin"
+    ]
+  },
+  "ignition_id": "bootstrap.ign"
+}
