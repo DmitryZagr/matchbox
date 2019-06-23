@@ -1,7 +1,10 @@
 {
-  "id": "install",
+  "id": "install-bootstrap",
   "name": "Simple CoreOS Container Linux Install",
   "profile": "oc-bootstrap",
+  "selector": {
+    "mac": "52:54:00:a1:9c:ae"
+  },
   "metadata": {
     "coreos_channel": "stable",
     "coreos_version": "2079.6.0",
