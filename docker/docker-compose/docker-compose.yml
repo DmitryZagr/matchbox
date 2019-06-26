@@ -6,17 +6,17 @@ services:
     restart: always
     volumes:
       - ../../examples:/var/lib/matchbox
-      - ../../examples/groups/simple-install:/var/lib/matchbox/groups
-      - ../../scripts/tls/ca.crt:/etc/matchbox/ca.crt:ro
-      - ../../scripts/tls/server.crt:/etc/matchbox/server.crt:ro
-      - ../../scripts/tls/server.key:/etc/matchbox/server.key:ro
+      - ../../examples/groups/oc-install:/var/lib/matchbox/groups
+      # - ../../scripts/tls/ca.crt:/etc/matchbox/ca.crt:ro
+      # - ../../scripts/tls/server.crt:/etc/matchbox/server.crt:ro
+      # - ../../scripts/tls/server.key:/etc/matchbox/server.key:ro
     environment:
       MATCHBOX_ADDRESS: 0.0.0.0:8080
-      MATCHBOX_RPC_ADDRESS: 0.0.0.0:8081
+      # MATCHBOX_RPC_ADDRESS: 0.0.0.0:8081
       MATCHBOX_LOG_LEVEL: debug
     ports:
       - "8080:8080"
-      - "8081:8081"
+      # - "8081:8081"
   dnsmasq:
     image: quay.io/coreos/dnsmasq
     restart: always

@@ -1,0 +1,17 @@
+{
+  "id": "install-master",
+  "name": "Simple CoreOS Container Linux Install",
+  "profile": "oc-master",
+  "selector": {
+    "mac": "52:54:00:d7:99:c7"
+  },
+  "metadata": {
+    "coreos_channel": "stable",
+    "coreos_version": "2079.6.0",
+    "ignition_endpoint": "http://matchbox.example.com:8080/ignition",
+    "baseurl": "http://matchbox.example.com:8080/assets/coreos",
+    "ssh_authorized_keys": [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCs+PR+2AqD7O7GXWUESwJ5WKd06J08V4Tcd10PCeBh63P1Ic0OyeGJJz7mEnGRQy6YBZqHXuVVrmqNCc1oT2/r+ZE3051SbenRUMZLsn7FWLmMTHjIZQg5Xz1OiDE11IcRVyno9mzBZXcbBaiXpJ+ZkFX9bxWmGczGQc7WyNe2PeMR1LqtJgw/WZ3l5ws3Z/nrZEi1snw0yp0n+Q8kPdeA9wlf/XmOl4crPCx/bxjmZsQxmcsD6zHyRSzbj+4ThyP3N9esD5UJm9LfiX6xjd79AjIQxZf42G+hOI2pM8gETlwNXL2DMUppMWkM2HejWoXZirLM3TjZ2rgC6EcbXI/P"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+#Kubernetes API
+
+172.17.0.22 api.test.cluster
+172.17.0.23 api.test.cluster
+172.17.0.24 api.test.cluster
+
+
+172.17.0.21 api-int.test.cluster
+
+172.17.0.22 api-int.test.cluster
+172.17.0.23 api-int.test.cluster
+172.17.0.24 api-int.test.cluster
+
+
+
+#Routes
+#ToDo
+
+#etcd
+
+172.17.0.22 etcd-0.test.cluster
+172.17.0.23 etcd-1.test.cluster
+172.17.0.24 etcd-2.test.cluster
+
+#matchbox
+192.168.1.64 matchbox.example.com

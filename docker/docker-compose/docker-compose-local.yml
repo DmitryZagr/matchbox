@@ -7,21 +7,22 @@ services:
     volumes:
       - ../../examples:/var/lib/matchbox
       - ../../examples/groups/oc-install:/var/lib/matchbox/groups
-      - ../../scripts/tls/ca.crt:/etc/matchbox/ca.crt:ro
-      - ../../scripts/tls/server.crt:/etc/matchbox/server.crt:ro
-      - ../../scripts/tls/server.key:/etc/matchbox/server.key:ro
+      # - ../../scripts/tls/ca.crt:/etc/matchbox/ca.crt:ro
+      # - ../../scripts/tls/server.crt:/etc/matchbox/server.crt:ro
+      # - ../../scripts/tls/server.key:/etc/matchbox/server.key:ro
     environment:
       MATCHBOX_ADDRESS: 0.0.0.0:8080
-      MATCHBOX_RPC_ADDRESS: 0.0.0.0:8081
+      # MATCHBOX_RPC_ADDRESS: 0.0.0.0:8081
       MATCHBOX_LOG_LEVEL: debug
     ports:
       - "8080:8080"
-      - "8081:8081"
+      # - "8081:8081"
   dnsmasq:
     image: quay.io/coreos/dnsmasq
     restart: always
     volumes:
       - ../../contrib/dnsmasq/docker0.conf:/etc/dnsmasq.conf:ro
+      - ../../contrib/dnsmasq/hosts.dns.cluster-local:/etc/hosts.dns.cluster:ro
     cap_add:
       - NET_ADMIN
     network_mode: "host"
